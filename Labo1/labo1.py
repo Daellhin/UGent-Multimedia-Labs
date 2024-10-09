@@ -4,23 +4,13 @@ import matplotlib.pyplot as plt
 
 
 # functions here ...
-def readImagesWrongColor():
-    image = cv2.imread('images/lena_color.jpg')
-    cv2.imshow('Image', image)
-    cv2.waitKey()
-    cv2.destroyAllWindows()
-
-    plt.imshow(image)
-    plt.show()
-
 def mirror1():
-    image = cv2.imread("woman_baby.jpg")
+    image = cv2.imread("images/woman_baby.jpg")
     option = 0
     while option != "H" and option != "V" and option != "D":
         option = input(
             "Geef spiegeling(H: horizontaal, V: verticaal, D: diagonaal):"
         ).strip()
-        print(option)
 
     image_flipped = 0
     if option == "H":
@@ -36,13 +26,12 @@ def mirror1():
 
 
 def mirror2():
-    image = cv2.imread("woman_baby.jpg")
+    image = cv2.imread("images/woman_baby.jpg")
     option = 0
     while option != "H" and option != "V" and option != "D":
         option = input(
             "Geef spiegeling(H: horizontaal, V: verticaal, D: diagonaal):"
         ).strip()
-        print(option)
 
     image_flipped = image
     if option == "H":
@@ -63,7 +52,7 @@ def mirror2():
 
 
 def swap():
-    image = cv2.imread("Images/cameraman.jpg")
+    image = cv2.imread("images/cameraman.jpg")
     h, w, c = image.shape
     h2 = h // 2
     w2 = w // 2
@@ -80,7 +69,7 @@ def swap():
 
 
 def logicimage():
-    image = cv2.imread("Images/Xraywrist.jpg")
+    image = cv2.imread("images/Xraywrist.jpg")
 
     plt.hist(image.ravel(), 256, [0, 256])
     plt.xlabel("Intensiteit")
@@ -92,18 +81,17 @@ def logicimage():
     plt.show()
 
 
-def change(image1: np.uint8, image2:np.uint8):
+def change(image1: np.uint8, image2: np.uint8):
+    # return image1 - image2 # original
     return cv2.absdiff(image1, image2)
 
-
 def main():
-    readImages()
     # -- Opdracht 1 --
-    # mirror1()
-    # mirror2()
+    mirror1()
+    mirror2()
 
     # -- Opdracht 2 --
-    # swap()
+    swap()
 
     # -- Opdracht 3 --
     logicimage()
