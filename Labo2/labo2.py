@@ -83,7 +83,6 @@ def show_results(image, result_image, title="Image"):
 
 
 def show_results_interactive(function: Callable, values: list[int], title="Image"):
-	print(values)
 	image, result_image = function(*values)
 	# Setup figures
 	fig = plt.figure(figsize=(20, 15))

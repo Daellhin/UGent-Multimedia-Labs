@@ -5,7 +5,7 @@ Datum: 4/09/2024
 
 --------------------------------------------------------------------------------
 
-OS: Windows 10
+OS: Windows 11
 
 Versie controle:
     Python 11.9
@@ -14,7 +14,7 @@ Versie controle:
     Scipy 1.14.1
     Matplotlib 3.9.2
 
-IDE: Microsoft Visual Studio
+IDE: Visual Studio Code
 
 --------------------------------------------------------------------------------
 
