@@ -22,7 +22,7 @@ Bestanden/Mappen:
 images/
     map met input afbeeldingen
 
-labo1.py
+labo3.py
     python script dat de oefeningen van labo3 sequentieel uitvoert
 
 start commando: python labo3.py 
