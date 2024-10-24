@@ -391,7 +391,7 @@ def butterworth_notch_filter(D0, u0, v0, order):
 def main():
     # Inleiding - De 2-D discrete Fouriertransformatie
     fourier_transform_demo("images/block.jpg")
-    fourier_transform_demo("imagles/disk.jpg")
+    fourier_transform_demo("images/disk.jpg")
 
     # Opdracht 1 - ideaal laagdoorlaatfilter
     show_results_interactive(ideal_low_pass, [[200, 0, 400, 1]], "Ideal Low Pass")
