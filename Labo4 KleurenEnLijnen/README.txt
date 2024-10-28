@@ -1,4 +1,4 @@
-Labo 4: Filters in het frequentiedomein
+Labo 4: Bewerkingen op kleurenbeelden en detectie van randen en lijnen
 
 Auteur: Lorin Speybrouck
 Datum: 18/10/2024
