@@ -3,6 +3,7 @@ import random
 import re
 from collections import namedtuple
 from typing import Any
+import cv2
 
 import numpy as np
 import scipy.ndimage
