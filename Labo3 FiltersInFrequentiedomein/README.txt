@@ -8,7 +8,7 @@ Datum: 11/10/2024
 OS: Windows 11
 
 Versie controle:
-    Python 11.9
+    Python 3.13.3
     Opencv 4.10.0
     Numpy 2.1.1
     Scipy 1.14.1
