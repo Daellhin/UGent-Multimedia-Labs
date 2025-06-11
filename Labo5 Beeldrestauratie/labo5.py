@@ -8,7 +8,6 @@ import scipy.ndimage
 from matplotlib.widgets import Slider
 from collections import namedtuple
 
-# Typing
 import typing
 from cv2.typing import MatLike, Scalar
 from numpy.typing import ArrayLike

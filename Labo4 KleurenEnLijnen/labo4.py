@@ -5,7 +5,6 @@ import scipy
 import scipy.ndimage
 from matplotlib.widgets import Slider
 
-# Typing
 import typing
 from cv2.typing import MatLike, Scalar
 from numpy.typing import ArrayLike

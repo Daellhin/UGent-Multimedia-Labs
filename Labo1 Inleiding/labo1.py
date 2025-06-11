@@ -3,7 +3,6 @@ import cv2
 import matplotlib.pyplot as plt
 
 
-# functions here ...
 def mirror1():
     image = cv2.imread("images/woman_baby.jpg")
     option = 0
