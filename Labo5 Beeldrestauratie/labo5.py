@@ -3,15 +3,11 @@ import statistics
 import numpy as np
 from matplotlib import pyplot as plt
 import cv2
-import scipy
-import scipy.ndimage
 from matplotlib.widgets import Slider
 from collections import namedtuple
 
-import typing
 from cv2.typing import MatLike, Scalar
 from numpy.typing import ArrayLike
-from typing import Any
 
 Line = namedtuple("Line", ["rho", "theta"])
 
@@ -254,9 +250,7 @@ def hough(
     image = cv2.imread(filename)
     image_with_lines = image.copy()
     grayscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    edges = cv2.Canny(
-        grayscale_image, canny_lower_threshold, canny_upper_threshold, apertureSize=3
-    )
+    edges = cv2.Canny(grayscale_image, canny_lower_threshold, canny_upper_threshold, apertureSize=3)
 
     lines = cv2.HoughLines(edges, 1, np.pi / 180, 79)
     filtered_lines = filter_similar_lines(lines)
@@ -281,9 +275,7 @@ def hough(
     return Out([image, image_with_lines], parallel_lines)
 
 
-def detect_motion_direction_hough(
-    image_path: str, canny_lower_threshold=50, canny_upper_threshold=200
-):
+def detect_motion_direction_hough(image_path: str, canny_lower_threshold=50, canny_upper_threshold=200):
     lines = hough(image_path, canny_lower_threshold, canny_upper_threshold).lines
     return 90 + statistics.fmean(([math.degrees(line.theta) for line in lines]))
 
@@ -297,9 +289,7 @@ def motion_blur_psf(angle: float, length: int):
 
 
 def andromeda_callback(k: float, length: int):
-    angle = detect_motion_direction_hough(
-        "images/Andromeda_motion_blurred_correct.png", 40, 80
-    )
+    angle = detect_motion_direction_hough("images/Andromeda_motion_blurred_correct.png", 40, 80)
     print(angle)
     kernel = motion_blur_psf(180 - angle, length)
     # plot_image(kernel)

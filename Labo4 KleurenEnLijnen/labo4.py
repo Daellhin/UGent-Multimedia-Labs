@@ -1,13 +1,10 @@
 import numpy as np
 from matplotlib import pyplot as plt
 import cv2
-import scipy
-import scipy.ndimage
-from matplotlib.widgets import Slider
 
-import typing
 from cv2.typing import MatLike, Scalar
 from numpy.typing import ArrayLike
+
 
 # -- Opdracht 1 --
 def segment_color(filename: str):
@@ -140,7 +137,7 @@ def hough(filename: str):
     lines = cv2.HoughLines(edges, 1, np.pi / 180, 79)
     filtered_lines = filter_similar_lines(lines)
 
-    #draw_lines(filtered_lines, img, (0, 255, 0))
+    # draw_lines(filtered_lines, img, (0, 255, 0))
 
     # Filter bijna parallelle lijnen
     parallel_lines = []
@@ -159,13 +156,7 @@ def hough(filename: str):
 
 
 # -- Opdracht 3 --
-def RANSAC(
-    filename: str,
-    num_lines=5,
-    threshold_distance=2,
-    threshold_inliers=100,
-    max_iterations=1000
-):
+def RANSAC(filename: str, num_lines=5, threshold_distance=2, threshold_inliers=100, max_iterations=1000):
     img = cv2.imread(filename, cv2.IMREAD_COLOR)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
@@ -202,9 +193,7 @@ def RANSAC(
             if x2 - x1 == 0 and y2 - y1 == 0:
                 continue
 
-            distances = np.abs(
-                (x2 - x1) * (y1 - points[:, 1]) - (x1 - points[:, 0]) * (y2 - y1)
-            ) / np.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+            distances = np.abs((x2 - x1) * (y1 - points[:, 1]) - (x1 - points[:, 0]) * (y2 - y1)) / np.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
             inlier_indices = distances < threshold_distance
             inliers = points[inlier_indices]
@@ -237,9 +226,7 @@ def RANSAC(
                 2,
             )
 
-            points = np.array(
-                [p for p in points if not np.any(np.all(p == best_inliers, axis=1))]
-            )
+            points = np.array([p for p in points if not np.any(np.all(p == best_inliers, axis=1))])
 
     fig = plt.figure(figsize=(12, 6))
     fig.canvas.manager.set_window_title("RANSAC power lines")

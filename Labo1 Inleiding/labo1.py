@@ -7,9 +7,7 @@ def mirror1():
     image = cv2.imread("images/woman_baby.jpg")
     option = 0
     while option != "H" and option != "V" and option != "D":
-        option = input(
-            "Geef spiegeling(H: horizontaal, V: verticaal, D: diagonaal):"
-        ).strip()
+        option = input("Geef spiegeling(H: horizontaal, V: verticaal, D: diagonaal):").strip()
 
     image_flipped = 0
     if option == "H":
@@ -28,9 +26,7 @@ def mirror2():
     image = cv2.imread("images/woman_baby.jpg")
     option = 0
     while option != "H" and option != "V" and option != "D":
-        option = input(
-            "Geef spiegeling(H: horizontaal, V: verticaal, D: diagonaal):"
-        ).strip()
+        option = input("Geef spiegeling(H: horizontaal, V: verticaal, D: diagonaal):").strip()
 
     image_flipped = image
     if option == "H":
@@ -83,6 +79,7 @@ def logicimage():
 def change(image1: np.uint8, image2: np.uint8):
     # return image1 - image2 # original
     return cv2.absdiff(image1, image2)
+
 
 def main():
     # -- Opdracht 1 --

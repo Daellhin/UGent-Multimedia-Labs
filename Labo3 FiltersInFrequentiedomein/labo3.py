@@ -1,8 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
 import cv2
-import scipy
-import scipy.ndimage
 from matplotlib.widgets import Slider
 from typing import Callable
 
@@ -60,9 +58,7 @@ def show_results_old(image, result_image, title="Image"):
     plt.show()
 
 
-def show_results_old_interactive(
-    function: Callable, valueList: list[list[int]], title="Image"
-):
+def show_results_old_interactive(function: Callable, valueList: list[list[int]], title="Image"):
     """
     valueList: list with list items in format [value,valmin,valmax,step]
     """
@@ -155,9 +151,7 @@ def show_results(image, fft_image, filtered_fft, filtered_image, title="Image"):
     plt.show()
 
 
-def show_results_interactive(
-    function: Callable, valueList: list[list[int]], title="Image"
-):
+def show_results_interactive(function: Callable, valueList: list[list[int]], title="Image"):
     """
     valueList: list with list items in format [value,valmin,valmax,step]
     """
@@ -261,9 +255,7 @@ def ideal_low_pass_mask(radius: int):
     filtered_image = np.fft.ifft2(ifshift).real
 
     filter_nor = np.uint8(cv2.normalize(filter, None, 0, 255, cv2.NORM_MINMAX))
-    filtered_image_norm = np.uint8(
-        cv2.normalize(filtered_image, None, 0, 255, cv2.NORM_MINMAX)
-    )
+    filtered_image_norm = np.uint8(cv2.normalize(filtered_image, None, 0, 255, cv2.NORM_MINMAX))
     # show_results_old(filter_nor, filtered_image_norm)
     return [filter_nor, filtered_image_norm]
 
@@ -274,9 +266,7 @@ def gaussian_low_pass(d0: int):
     fft_image = np.fft.fft2(image)
     fft_image_shift = np.fft.fftshift(fft_image)
     rows, cols = image.shape
-    u, v = np.meshgrid(
-        np.arange(-cols // 2, cols // 2), np.arange(-rows // 2, rows // 2)
-    )
+    u, v = np.meshgrid(np.arange(-cols // 2, cols // 2), np.arange(-rows // 2, rows // 2))
     d = np.sqrt(u**2 + v**2)
     gaussian_filter = np.exp(-(d**2) / (2 * (d0**2)))
     filtered_fft = fft_image_shift * gaussian_filter
@@ -334,9 +324,7 @@ def butterworth_high_frequency_emphasis(radius: int, order: int, a: float, b: fl
     fft_image_shift = np.fft.fftshift(fft_image)
     filter = butterworth_filter(fft_image_shift.shape, radius, order)
     high_pass_filter = 1 - filter  # HHP = 1 - HLP
-    hhfe_filter = (
-        a + b * high_pass_filter
-    )  # High-frequency emphasis filter: HHFE = a + bHHP
+    hhfe_filter = a + b * high_pass_filter  # High-frequency emphasis filter: HHFE = a + bHHP
 
     filtered_fft = fft_image_shift * hhfe_filter
     ifshift = np.fft.ifftshift(filtered_fft)
@@ -349,9 +337,7 @@ def butterworth_high_frequency_emphasis(radius: int, order: int, a: float, b: fl
 def butterworth_notch_filter_int(shape, D0, u0, v0, order):
     # Maak een meshgrid voor het filter
     rows, cols = shape
-    U, V = np.meshgrid(
-        np.arange(-cols // 2, cols // 2), np.arange(-rows // 2, rows // 2)
-    )
+    U, V = np.meshgrid(np.arange(-cols // 2, cols // 2), np.arange(-rows // 2, rows // 2))
 
     # Bereken de afstand van elke punt in het frequentiedomein tot de notch-locaties (u0, v0) en (-u0, -v0)
     D1 = np.sqrt((U - u0) ** 2 + (V - v0) ** 2)
@@ -395,17 +381,13 @@ def main():
 
     # Opdracht 1 - ideaal laagdoorlaatfilter
     show_results_interactive(ideal_low_pass, [[200, 0, 400, 1]], "Ideal Low Pass")
-    show_results_old_interactive(
-        ideal_low_pass_mask, [[10, 0, 400, 1]], "Ideal Low Pass Mask"
-    )
+    show_results_old_interactive(ideal_low_pass_mask, [[10, 0, 400, 1]], "Ideal Low Pass Mask")
 
     # Opdracht 2 - Gaussiaans laagdoorlaatfilter
     show_results_interactive(gaussian_low_pass, [[100, 0, 400, 1]], "Gaussian Low Pass")
 
     # Opdracht 3 - Butterworth laagdoorlaatfilter
-    show_results_interactive(
-        butterworth_low_pass, [[30, 0, 400, 1], [2, 0, 10, 1]], "Butterworth Low Pass"
-    )
+    show_results_interactive(butterworth_low_pass, [[30, 0, 400, 1], [2, 0, 10, 1]], "Butterworth Low Pass")
 
     # Opdracht 4 - Hoogdoorlaatfilters
     show_results_interactive(

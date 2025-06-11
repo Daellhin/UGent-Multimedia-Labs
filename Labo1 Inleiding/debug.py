@@ -4,17 +4,19 @@ import matplotlib.pyplot as plt
 
 
 def readImagesWrongColor():
-    image = cv2.imread('images/lena_color.jpg')
-    cv2.imshow('Image', image)
+    image = cv2.imread("images/lena_color.jpg")
+    cv2.imshow("Image", image)
     cv2.waitKey()
     cv2.destroyAllWindows()
 
     plt.imshow(image)
     plt.show()
 
-def change(image1: np.uint8, image2:np.uint8):
-    #return cv2.absdiff(image1, image2)
+
+def change(image1: np.uint8, image2: np.uint8):
+    # return cv2.absdiff(image1, image2)
     return image1.astype(np.int8) - image2.astype(np.int8)
+
 
 def logicimage(image):
     plt.hist(image.ravel(), 256, [0, 256])
@@ -47,8 +49,8 @@ def main():
     plt.axis("off")
     plt.imshow(changeIm, cmap="gray")
     plt.show()
-    
-    #logicimage(changeIm)
+
+    # logicimage(changeIm)
 
 
 if __name__ == "__main__":
